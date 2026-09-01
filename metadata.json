@@ -1,0 +1,6 @@
+{
+  "name": "Anime Universe",
+  "description": "Interactive Anime Database, Event Timeline Simulator & Character Knowledge Graph Explorer",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
