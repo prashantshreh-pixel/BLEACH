@@ -1,5 +1,4 @@
 import { AnimeDetail, AnimeLight } from '../types';
-import soulKingPalaceImg from '../Soul King Palace.jpg';
 
 export const ANIMES_DATA: AnimeDetail[] = [
   {
@@ -9,7 +8,7 @@ export const ANIMES_DATA: AnimeDetail[] = [
     titleJapanese: 'BLEACH 千年血戦篇',
     romaji: 'Bleach: Sennen Kessen-hen',
     posterUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
-    bannerUrl: soulKingPalaceImg,
+    bannerUrl: '/soul-king-palace.jpg',
     year: 2022,
     season: 'Fall',
     studio: 'Studio Pierrot',

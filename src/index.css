@@ -86,3 +86,24 @@
   }
 }
 
+/* Fix simpleParallax container wrapper in React layout */
+.simpleParallax {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  overflow: hidden !important;
+  z-index: 0 !important;
+}
+
+.simpleParallax img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+

@@ -14,10 +14,13 @@
     "@apollo/client": "^4.2.12",
     "@google/genai": "^2.4.0",
     "@tailwindcss/vite": "^4.1.14",
+    "@types/animejs": "^3.1.13",
     "@types/canvas-confetti": "^1.9.0",
     "@types/cytoscape": "^3.31.0",
+    "@types/three": "^0.185.4",
     "@vitejs/plugin-react": "^5.0.4",
     "@xyflow/react": "^12.11.5",
+    "animejs": "^4.5.0",
     "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -31,6 +34,7 @@
     "react-dom": "^19.0.1",
     "simple-parallax-js": "^7.0.0",
     "tailwind-merge": "^3.6.0",
+    "three": "^0.185.1",
     "vite": "^6.2.3"
   },
   "devDependencies": {
