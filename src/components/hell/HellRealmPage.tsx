@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect, useCallback } from 'react';
-import { Flame, Info, Compass, Layers, Sparkles, ChevronRight, ChevronLeft, Quote } from 'lucide-react';
+import { Info, Compass, Layers, Sparkles, ChevronRight, ChevronLeft, Quote } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface HellRealmPageProps {
@@ -16,14 +16,14 @@ const HELL_CHARACTERS = [
     name: 'Jūshirō Ukitake',
     kanji: '浮竹 十郎太夫',
     role: 'Fallen Captain of Squad 13',
-    zanpakuto: 'Sōgyo no Kotowari (双魚理)',
+    zanpakuto: 'Sōgyo no Kotowari',
     status: 'Sanctified in Hell',
     reiatsuGrade: 'Grade 3 Reiatsu',
-    avatarImg: '/hell/ukitake.jpg',
-    fullImg: '/hell/ukitake.jpg',
-    leftImg: '/hell/ukitake-left.jpg?v=5',
+    avatarImg: '/hell/ukitake.jpg?v=10',
+    fullImg: '/hell/ukitake.jpg?v=10',
+    leftImg: '/hell/ukitake-left.jpg?v=10',
     description:
-      'The former beloved Captain of Squad 13 who sacrificed his lungs to Mimihagi (the Right Hand of the Soul King). Following his death, his Grade 3 spiritual density could not be absorbed by Soul Society, resulting in his soul being cast into Hell during the Reishisai festival.',
+      'The former beloved Captain of Squad 13 who sacrificed his lungs to Mimihagi. Following his death, his Grade 3 spiritual density could not be absorbed by Soul Society, resulting in his soul being cast into Hell during the Reishisai festival.',
     abilities: [
       'Energy Reflection & Redirection',
       'Kamikake Divine Sacrifice',
@@ -39,7 +39,7 @@ const HELL_CHARACTERS = [
     name: 'Retsu (Yachiru) Unohana',
     kanji: '卯ノ花 烈 / 八千流',
     role: 'First Kenpachi & Former Squad 4 Captain',
-    zanpakuto: 'Minazuki (肉雫偞)',
+    zanpakuto: 'Minazuki',
     status: 'Fallen Captain in Hell',
     reiatsuGrade: 'Grade 3 Reiatsu',
     avatarImg: '/hell/unohana-left.jpg',
@@ -62,12 +62,12 @@ const HELL_CHARACTERS = [
     name: 'Genryūsai Shigekuni Yamamoto',
     kanji: '山本元柳斎 重國',
     role: 'Founder & Captain-Commander of Gotei 13',
-    zanpakuto: 'Zanka no Tachi (残火の太刀)',
+    zanpakuto: 'Zanka no Tachi',
     status: 'Fallen Commander',
     reiatsuGrade: 'Grade 1 Reiatsu (Peak)',
-    avatarImg: '/hell/yamamoto-left.jpg',
-    fullImg: '/hell/yamamoto.jpg',
-    leftImg: '/hell/yamamoto-left.jpg',
+    avatarImg: '/hell/yamamoto-left.jpg?v=10',
+    fullImg: '/hell/yamamoto.jpg?v=10',
+    leftImg: '/hell/yamamoto-left.jpg?v=10',
     description:
       'The 2,000-year patriarch of Soul Society whose Bankai incinerated anything it touched to ash at 15,000,000 degrees. Slain by Yhwach in the Quincy War, his immensity of spiritual power was cast into the Hell pit.',
     abilities: [
@@ -86,12 +86,12 @@ const HELL_CHARACTERS = [
     name: 'Szayelaporro Granz',
     kanji: 'ザエルアポロ・グランツ',
     role: 'Jailer of Hell / Former 8th Espada',
-    zanpakuto: 'La Fornicarás (邪淫妃)',
+    zanpakuto: 'La Fornicarás',
     status: 'Hell Inmate / Jailer',
     reiatsuGrade: 'Arrancar Elite',
-    avatarImg: '/hell/szayel-left.jpg?v=9',
-    fullImg: '/hell/szayel.jpg?v=9',
-    leftImg: '/hell/szayel-left.jpg?v=9',
+    avatarImg: '/hell/szayel-left.jpg?v=10',
+    fullImg: '/hell/szayel.jpg?v=10',
+    leftImg: '/hell/szayel-left.jpg?v=10',
     description:
       'The mad scientist Arrancar killed by Mayuri Kurotsuchi. Transformed within the depths of Jigoku into a chained Jailer of Hell who escaped through a breach during the Reishisai ritual to warn Soul Society of the shifting balance of power.',
     abilities: ['Gabriel Soul Rebirth', 'Hell Chain Projection', 'Reishi Corruption Spray'],
@@ -109,9 +109,9 @@ const HELL_CHARACTERS = [
     zanpakuto: 'Hell Flame Manipulation',
     status: 'Togabito Outcast',
     reiatsuGrade: 'Togabito Commander',
-    avatarImg: '/hell/shuren-left.jpg',
-    fullImg: '/hell/shuren.jpg',
-    leftImg: '/hell/shuren-left.jpg',
+    avatarImg: '/hell/shuren-left.jpg?v=10',
+    fullImg: '/hell/shuren.jpg?v=10',
+    leftImg: '/hell/shuren-left.jpg?v=10',
     description:
       'The cunning leader of the Togabito who seeks to break the chains of Hell by exploiting Ichigo Kurosaki\'s Hollow powers to shatter the Hell Gates.',
     abilities: ['Hellfire Manipulation', 'Flame Barrier', 'Soul Chain Absorption'],
@@ -128,9 +128,9 @@ const HELL_CHARACTERS = [
     zanpakuto: 'Black Hell Blade',
     status: 'Chained Sinner',
     reiatsuGrade: 'Togabito Elite',
-    avatarImg: '/hell/kokuto-left.jpg',
+    avatarImg: '/hell/kokuto-left.jpg?v=10',
     fullImg: null,
-    leftImg: '/hell/kokuto-left.jpg',
+    leftImg: '/hell/kokuto-left.jpg?v=10',
     description:
       'A vengeful sinner condemned to Hell after murdering his sister\'s killers. He wears the unbreakable chains of Jigoku and wields a jagged dark blade.',
     abilities: ['Black Chain Telekinesis', 'Hell Reishi Speed', 'Unbreakable Regeneration'],
@@ -144,86 +144,48 @@ const HELL_CHARACTERS = [
 const HELL_LAYERS = [
   {
     level: 1,
-    kanji: '第一階層, Dai Ichi Kaisō',
-    name: 'First Level: Floating Reishi Blocks',
-    description: (
-      <>
-        The First Level of Hell features a multitude of white blocks floating in mid-air among a
-        series of blue pathways. It is on this level that many of the dejected Togabito reside,
-        having given up on resistance. Renji Abarai commented that the First Level of Hell has
-        Reiatsu so strangled that people with normal Reiatsu would go insane. This level is where
-        the majority of Kushanāda patrol frequently, in order to prey upon the weaker Togabito. At
-        the edge of the blue pathway is a gaping abyss, through which the next level can be
-        accessed.
-      </>
-    ),
-    hazard: 'Strangled Reiatsu & Kushanāda Patrols',
+    order: 'First Layer',
+    title: 'Hengokugake ("Limbo Precipice")',
+    rootOfSin: 'Ignorance',
+    description:
+      'This is the first layer that those who have fallen into Hell reach. It is characterized by lines of inorganic floating cubes.',
+    image: '/hell/layer-1.jpg',
   },
   {
     level: 2,
-    kanji: '第二階層, Dai Nii Kaisō',
-    name: 'Second Level: Sea of Water Lilies',
-    description: (
-      <>
-        The Second Level of Hell is mostly composed of a large body of water. Within this large
-        expanse of water, are a multitude of stone water lilies, in the center of which lies a
-        pierced skeleton of a Kushanāda. It is on this level that Ichigo Kurosaki and his friends
-        initially battle with the Togabito in Hell. The body of water can also be navigated
-        through, and ultimately leads to the third level.
-      </>
-    ),
-    hazard: 'Spirit-Dissolving Water & Pierced Kushanāda',
+    order: 'Second Layer',
+    title: 'Rirengedai ("Detached Lotus Seat")',
+    rootOfSin: 'Attachment',
+    description:
+      'In this layer, huge stone water lilies float on the surface of an expanse of water. A giant skeleton pierced by a single massive blade rises from the center of each lotus.',
+    image: '/hell/layer-2.jpg',
   },
   {
     level: 3,
-    kanji: '第三階層, Dai San Kaisō',
-    name: 'Third Level: Volcanic Lava & Shrines',
-    description: (
-      <>
-        The Third Level of Hell is a rocky, barren landscape with various craters in which yellow
-        lava forms. It is here that Szayelaporro Granz and Aaroniero Arruruerie battled with Shuren
-        and his comrades. Ichigo and Kokutō navigate through this area to reach Shuren's base at
-        the lowermost level of Hell. Taikon, Gunjō, and Garogai are all defeated on this level. After
-        the rocky landscape is cleared, there is a narrow passageway lit with the dim lighting from
-        various shrines.
-      </>
-    ),
-    hazard: 'Yellow Lava Craters & Togabito Outpost',
+    order: 'Third Layer',
+    title: 'Hokōsen ("Polluted Yellow Spring of Yomi")',
+    rootOfSin: 'Hatred',
+    description:
+      'This layer is filled with a series of volcanic mountains filled at their flattened peaks with poisonous sulfuric lakes. A Torii-lined road, known as the Hōzuki Path, leads from the clouds to reach the fourth layer.',
+    image: '/hell/layer-3.jpg',
   },
   {
     level: 4,
-    kanji: '第四階層, Dai Shi Kaisō',
-    name: 'Fourth Level: Lava Waterfall & Bone Desert',
-    description: (
-      <>
-        The Fourth Level of Hell starts off with a hilly area in which there are a multitude of small
-        domes jutting out of the ground. From the opening in the face of a cliff, a thundering
-        waterfall with the yellow lava rains down around it. The sand which emits trace amounts of
-        Reiatsu is comprised of the crushed bones of millions of Togabito, who turned to ash due to
-        the hopelessness of their predicament. This section then crosses over into a giant skeleton
-        resembling the ones which make up the Gates of Hell. This overlooks a pit of lava, which
-        has the ability to resurrect killed Togabito. Around the skeletal structure, is a series of
-        pillars and a set of stone fingers.
-      </>
-    ),
-    hazard: 'Lava Waterfall, Ash Sand & Togabito Resurrection Pit',
+    order: 'Fourth Layer',
+    title: 'Ikotsu no Shumize ("Ash Seat Wasteland")',
+    rootOfSin: 'Doubt',
+    description:
+      'A hilly area with small domes jutting out of the ground. A thundering waterfall of yellow lava rains down onto sand comprised of crushed bones of millions of Togabito who turned to ash due to hopelessness.',
+    image: '/hell/layer-4.jpg',
   },
   {
     level: 5,
-    kanji: '最奥部, Saiōbu',
-    name: 'Lowermost Level: The Primordial Nether Pit',
-    description: (
-      <>
-        The Lowermost Level of Hell is composed of a black landscape, with many irregular columns
-        covered in veins of lava jutting out from the ground. The Kushanāda are capable of
-        materializing from within these lava columns. This level was where Kokutō was imprisoned in
-        Hell, and also where he subsequently awoke after witnessing Ichigo's Hollowfication.
-        Lightning strikes are a frequent occurrence here. There are also withered trees composed of
-        bones littered across the landscape, from which Kokutō hangs the bodies of Lieutenant Renji
-        Abarai and Uryū Ishida for Ichigo to see.
-      </>
-    ),
-    hazard: 'Lava Columns, Skeletal Trees & Unending Lightning',
+    order: 'Fifth Layer',
+    title: 'Manjushagekyū ("Crimson Spider Lily Palace")',
+    rootOfSin: 'Pride',
+    description:
+      'The lowermost layer of Hell, composed of a black landscape with irregular lava columns and withered skeletal trees where sinners are bound.',
+    image: '/hell/layer-5.jpg',
   },
 ];
 
@@ -233,9 +195,9 @@ const getRightImgPosition = (id: string): string => {
     case 'ukitake':
       return 'object-[75%_20%] sm:object-right-top scale-105';
     case 'unohana':
-      return 'object-[20%_20%] scale-105';
+      return 'object-contain sm:object-right-top object-center scale-105';
     case 'shuren':
-      return 'object-[15%_20%] scale-105';
+      return 'object-contain sm:object-right-top object-center scale-105';
     case 'szayelaporro':
       return 'object-[75%_15%] scale-105';
     case 'yamamoto':
@@ -286,9 +248,9 @@ export const HellRealmPage: React.FC<HellRealmPageProps> = ({ onBack }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white selection:bg-red-600 selection:text-white font-inter pb-24">
+    <div className="min-h-screen flex flex-col bg-zinc-950 text-white selection:bg-red-600 selection:text-white font-inter">
       {/* 1. FULL-WIDTH 100VH GENSHIN CHARACTER STAGE */}
-      <section className="relative w-full h-screen min-h-[700px] overflow-hidden bg-zinc-950 flex flex-col justify-between p-6 sm:p-10 lg:p-14 select-none">
+      <section className="relative w-full h-screen min-h-[700px] overflow-hidden bg-zinc-950 flex flex-col justify-between p-6 sm:p-10 lg:p-14 select-none shrink-0">
         {/* FULL STAGE CHARACTER POP-OUT ARTWORK (RIGHT SIDE) */}
         <AnimatePresence mode="wait">
           {activeChar.fullImg ? (
@@ -347,17 +309,12 @@ export const HellRealmPage: React.FC<HellRealmPageProps> = ({ onBack }) => {
           )}
         </AnimatePresence>
 
-        {/* Japanese Kanji Background Stamp */}
-        <div className="absolute right-8 top-8 text-white/[0.04] font-podium text-8xl sm:text-9xl font-black uppercase pointer-events-none select-none tracking-tighter z-10">
-          {activeChar.kanji}
-        </div>
-
         {/* TOP AREA INSIDE STAGE: Header Title */}
         <div className="relative z-30 flex items-center justify-between border-b border-white/10 pb-3 max-w-7xl w-full mx-auto shrink-0">
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-red-500 animate-pulse" />
             <h2 className="font-podium text-xs sm:text-sm uppercase tracking-[0.25em] text-white/70 font-semibold">
-              RESIDENTS OF THE NETHER REALM // 地獄・咎人
+              RESIDENTS OF THE NETHER REALM
             </h2>
           </div>
         </div>
@@ -382,9 +339,6 @@ export const HellRealmPage: React.FC<HellRealmPageProps> = ({ onBack }) => {
                   <h3 className="font-podium text-4xl sm:text-6xl uppercase tracking-tight text-white leading-none drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)]">
                     {activeChar.name}
                   </h3>
-                  <div className="text-xs sm:text-sm font-inter text-white/60 italic tracking-wider">
-                    {activeChar.kanji}
-                  </div>
                 </div>
 
                 {/* Description */}
@@ -492,7 +446,7 @@ export const HellRealmPage: React.FC<HellRealmPageProps> = ({ onBack }) => {
       </section>
 
       {/* LOWER SECTION: THE METAPHYSICS & THE 5 LEVELS OF HELL */}
-      <main className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16 space-y-20">
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 space-y-20 flex-1 w-full">
         {/* THE METAPHYSICS */}
         <section className="space-y-6">
           <div className="flex items-center gap-3 border-b border-red-900/60 pb-3">
@@ -539,8 +493,8 @@ export const HellRealmPage: React.FC<HellRealmPageProps> = ({ onBack }) => {
           </div>
         </section>
 
-        {/* THE 5 LEVELS OF HELL */}
-        <section className="space-y-8">
+        {/* THE 5 LEVELS OF HELL - WIKI STYLE METALLIC TABLE */}
+        <section className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-red-900/60 pb-4">
             <div>
               <div className="font-inter text-xs tracking-[0.3em] uppercase text-red-500 font-semibold flex items-center gap-2">
@@ -548,7 +502,7 @@ export const HellRealmPage: React.FC<HellRealmPageProps> = ({ onBack }) => {
                 <span>CANONICAL STRATA BREAKDOWN</span>
               </div>
               <h2 className="font-podium text-3xl sm:text-4xl uppercase tracking-tight text-white mt-1">
-                THE 5 LEVELS OF HELL (地獄の階層)
+                THE 5 LEVELS OF HELL
               </h2>
             </div>
             <span className="text-xs font-inter text-white/60 tracking-widest uppercase">
@@ -556,77 +510,69 @@ export const HellRealmPage: React.FC<HellRealmPageProps> = ({ onBack }) => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="space-y-3">
-              {HELL_LAYERS.map((layer) => (
-                <button
-                  key={layer.level}
-                  onClick={() => setSelectedLayer(layer.level)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-center ${
-                    selectedLayer === layer.level
-                      ? 'bg-red-950 border-red-500 text-white shadow-[0_0_20px_rgba(239,35,60,0.4)] font-bold'
-                      : 'bg-zinc-900 border-white/10 text-white/70 hover:text-white hover:border-white/40'
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-podium text-sm uppercase text-red-400">
-                      Level {layer.level}
-                    </span>
-                    <span className="text-[10px] font-inter text-white/50 italic">
-                      {layer.kanji}
-                    </span>
-                  </div>
-                  <span className="text-xs font-inter font-semibold text-white/90 mt-1">
-                    {layer.name.split(':')[1]}
-                  </span>
-                </button>
-              ))}
+          {/* EXACT TABLE CONTAINER MATCHING WIKI DESIGN */}
+          <div className="w-full overflow-hidden rounded-xl border border-red-900/80 bg-zinc-950/90 shadow-[0_0_50px_rgba(0,0,0,0.9)]">
+            {/* Top Red Metallic Banner */}
+            <div className="bg-gradient-to-r from-red-950 via-red-900 to-red-950 border-b border-red-800/80 text-white font-podium font-bold uppercase tracking-widest text-center py-2.5 text-sm sm:text-base shadow-md">
+              Five Layers of Hell
             </div>
 
-            {/* Selected Layer Display */}
-            <div className="lg:col-span-2 border border-red-900/80 bg-gradient-to-b from-red-950/40 via-zinc-900 to-zinc-950 p-8 rounded-2xl space-y-6 flex flex-col justify-between shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-              {(() => {
-                const current = HELL_LAYERS.find((l) => l.level === selectedLayer)!;
-                return (
-                  <>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                        <div className="inline-flex items-center gap-2 text-xs font-inter uppercase tracking-widest text-red-400">
-                          <Compass className="w-4 h-4 text-red-500" />
-                          <span>NETHER STRATA // LEVEL {current.level}</span>
+            {/* Table */}
+            <div className="overflow-x-auto scrollbar-none">
+              <table className="w-full text-left border-collapse min-w-[700px]">
+                <thead>
+                  <tr className="bg-gradient-to-r from-red-950/90 via-zinc-950 to-red-950/90 text-white font-podium uppercase text-xs sm:text-sm font-bold tracking-wider border-b border-red-900/80">
+                    <th className="py-3 px-4 w-[22%] text-center border-r border-red-900/60">Appearance</th>
+                    <th className="py-3 px-4 w-[18%] text-center border-r border-red-900/60">Layer Order</th>
+                    <th className="py-3 px-4 w-[46%] border-r border-red-900/60">Description</th>
+                    <th className="py-3 px-4 w-[14%] text-center">Root of Sin</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-red-900/50 font-inter text-xs sm:text-sm">
+                  {HELL_LAYERS.map((layer) => (
+                    <tr
+                      key={layer.level}
+                      className="bg-black/60 hover:bg-red-950/20 transition-colors"
+                    >
+                      {/* Appearance Image Thumbnail */}
+                      <td className="py-3 px-4 border-r border-red-900/60 align-middle text-center">
+                        <div className="relative w-full max-w-[200px] aspect-[16/10] mx-auto rounded overflow-hidden border border-red-900/60 shadow-lg group">
+                          <img
+                            src={layer.image}
+                            alt={layer.order}
+                            className="w-full h-full object-cover filter contrast-110 brightness-95 group-hover:scale-105 transition-transform duration-300"
+                          />
                         </div>
-                        <span className="text-xs font-inter text-white/50 italic">
-                          {current.kanji}
-                        </span>
-                      </div>
+                      </td>
 
-                      <h3 className="font-podium text-3xl sm:text-4xl uppercase text-white leading-none">
-                        {current.name}
-                      </h3>
+                      {/* Layer Order */}
+                      <td className="py-3 px-4 border-r border-red-900/60 align-middle text-center font-podium font-bold text-sm sm:text-base text-white">
+                        {layer.order}
+                      </td>
 
-                      <div className="text-sm font-inter text-white/90 leading-relaxed space-y-2">
-                        {current.description}
-                      </div>
-                    </div>
+                      {/* Description */}
+                      <td className="py-4 px-5 border-r border-red-900/60 align-middle text-white/90 leading-relaxed">
+                        <strong className="text-white font-podium text-sm sm:text-base font-bold tracking-wide mr-1.5">
+                          {layer.title}:
+                        </strong>
+                        {layer.description}
+                      </td>
 
-                    <div className="pt-6 border-t border-white/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                      <span className="text-xs font-inter uppercase text-white/60 tracking-widest">
-                        Primary Environmental Hazard
-                      </span>
-                      <span className="text-xs font-podium font-bold text-red-400 uppercase tracking-wide border border-red-500/40 px-3.5 py-1.5 rounded bg-red-950/90 shadow-[0_0_15px_rgba(239,35,60,0.3)]">
-                        {current.hazard}
-                      </span>
-                    </div>
-                  </>
-                );
-              })()}
+                      {/* Root of Sin */}
+                      <td className="py-3 px-4 align-middle text-center font-podium font-bold text-sm sm:text-base text-red-400">
+                        {layer.rootOfSin}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="w-full border-t border-red-900/60 py-8 text-center text-xs font-inter tracking-[0.3em] text-white/50 uppercase bg-black">
+      {/* Footer - STICKING TO ABSOLUTE BOTTOM */}
+      <footer className="w-full border-t border-red-900/60 py-8 text-center text-xs font-inter tracking-[0.3em] text-white/50 uppercase bg-black mt-auto shrink-0">
         B L E A C H • HELL NO JUKU ARCHIVE • ALL RIGHTS RESERVED
       </footer>
     </div>
