@@ -4,14 +4,18 @@ import { apolloClient } from './lib/apollo/client';
 import { HomePage } from './components/home/HomePage';
 import { AnimeDetailPage } from './components/detail/AnimeDetailPage';
 import { HellRealmPage } from './components/hell/HellRealmPage';
+import { HuecoMundoRealmPage } from './components/huecomundo/HuecoMundoRealmPage';
 import { AnimatePresence, motion } from 'motion/react';
 
 export default function App() {
-  // Navigation state: 'home' | 'hell' | anime slug string
+  // Navigation state: 'home' | 'hell' | 'hueco-mundo' | anime slug string
   const [currentView, setCurrentView] = React.useState<string>(() => {
     const hash = window.location.hash.replace('#/', '').replace('#', '');
     if (hash === 'hell') {
       return 'hell';
+    }
+    if (hash === 'hueco-mundo' || hash === 'huecomundo') {
+      return 'hueco-mundo';
     }
     if (hash.startsWith('anime/')) {
       return hash.replace('anime/', '');
@@ -25,6 +29,8 @@ export default function App() {
       const hash = window.location.hash.replace('#/', '').replace('#', '');
       if (hash === 'hell') {
         setCurrentView('hell');
+      } else if (hash === 'hueco-mundo' || hash === 'huecomundo') {
+        setCurrentView('hueco-mundo');
       } else if (hash.startsWith('anime/')) {
         setCurrentView(hash.replace('anime/', ''));
       } else {
@@ -65,12 +71,23 @@ export default function App() {
     window.scrollTo(0, 0);
   };
 
-  // Direct render for Hell Realm to prevent layout / scroll delays
+  // Direct render for Hell Realm
   if (currentView === 'hell') {
     return (
       <ApolloProvider client={apolloClient}>
         <div className="min-h-screen bg-zinc-950 font-sans text-zinc-100 selection:bg-indigo-500/30 selection:text-indigo-200">
           <HellRealmPage onBack={handleBackToHome} />
+        </div>
+      </ApolloProvider>
+    );
+  }
+
+  // Direct render for Hueco Mundo Realm
+  if (currentView === 'hueco-mundo' || currentView === 'huecomundo') {
+    return (
+      <ApolloProvider client={apolloClient}>
+        <div className="h-screen w-full overflow-hidden bg-zinc-950 font-sans text-zinc-100 selection:bg-purple-500/30 selection:text-purple-200">
+          <HuecoMundoRealmPage onBack={handleBackToHome} />
         </div>
       </ApolloProvider>
     );
