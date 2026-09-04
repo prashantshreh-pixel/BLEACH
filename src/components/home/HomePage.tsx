@@ -407,7 +407,11 @@ export function HomePage({ onSelectAnime }: HomePageProps) {
         </div>
       </section>
 
-      <section className="relative w-full h-screen min-h-[750px] overflow-hidden bg-black text-white flex flex-col justify-center select-none">
+      {/* STAGE 4: HUECO MUNDO & LAS NOCHES (HOLLOW REALM - CLICK TO OPEN DEDICATED HUECO MUNDO REALM PAGE) */}
+      <section
+        onClick={() => onSelectAnime('hueco-mundo')}
+        className="relative w-full h-screen min-h-[750px] overflow-hidden bg-black text-white flex flex-col justify-center select-none cursor-pointer group"
+      >
         <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-black via-black/70 to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-zinc-950">
           <motion.img
@@ -416,7 +420,7 @@ export function HomePage({ onSelectAnime }: HomePageProps) {
             alt="Hueco Mundo: Las Noches (虚圏・虚夜宮)"
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors duration-500 z-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-indigo-950/20 to-black/85 z-10" />
         </div>
@@ -431,7 +435,7 @@ export function HomePage({ onSelectAnime }: HomePageProps) {
               <span>HOLLOW REALM // 虚圏・虚夜宮</span>
             </div>
 
-            <h2 className="font-podium text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-none">
+            <h2 className="font-podium text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white group-hover:text-purple-300 transition-colors leading-none">
               HUECO MUNDO.
               <br />
               <span className="text-purple-400">LAS NOCHES &amp; DESERT.</span>
@@ -441,7 +445,13 @@ export function HomePage({ onSelectAnime }: HomePageProps) {
               The endless dimension of perpetual night and white quartz sand. Dominated at its core by Las Noches, the massive white palace ruled by Sosuke Aizen and the ten Espada.
             </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
+            <div className="pt-2">
+              <span className="inline-flex items-center gap-2 text-xs font-podium uppercase tracking-widest text-purple-300 group-hover:text-white bg-purple-950/80 group-hover:bg-purple-900 border border-purple-500/50 px-4 py-2 rounded-lg transition-all shadow-[0_0_20px_rgba(168,85,247,0.4)]">
+                ENTER HUECO MUNDO REALM ARCHIVE →
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
               <div className="border-l border-white/30 pl-3">
                 <span className="text-[10px] font-inter uppercase tracking-widest text-white/50 block">Dominant Citadel</span>
                 <span className="text-sm font-podium font-bold text-white tracking-wide">LAS NOCHES</span>
