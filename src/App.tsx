@@ -5,10 +5,11 @@ import { HomePage } from './components/home/HomePage';
 import { AnimeDetailPage } from './components/detail/AnimeDetailPage';
 import { HellRealmPage } from './components/hell/HellRealmPage';
 import { HuecoMundoRealmPage } from './components/huecomundo/HuecoMundoRealmPage';
+import { SoulKingRealmPage } from './components/royalrealm/SoulKingRealmPage';
 import { AnimatePresence, motion } from 'motion/react';
 
 export default function App() {
-  // Navigation state: 'home' | 'hell' | 'hueco-mundo' | anime slug string
+  // Navigation state: 'home' | 'hell' | 'hueco-mundo' | 'soul-king-palace' | anime slug string
   const [currentView, setCurrentView] = React.useState<string>(() => {
     const hash = window.location.hash.replace('#/', '').replace('#', '');
     if (hash === 'hell') {
@@ -16,6 +17,9 @@ export default function App() {
     }
     if (hash === 'hueco-mundo' || hash === 'huecomundo') {
       return 'hueco-mundo';
+    }
+    if (hash === 'soul-king-palace' || hash === 'royal-realm' || hash === 'reio') {
+      return 'soul-king-palace';
     }
     if (hash.startsWith('anime/')) {
       return hash.replace('anime/', '');
@@ -31,6 +35,8 @@ export default function App() {
         setCurrentView('hell');
       } else if (hash === 'hueco-mundo' || hash === 'huecomundo') {
         setCurrentView('hueco-mundo');
+      } else if (hash === 'soul-king-palace' || hash === 'royal-realm' || hash === 'reio') {
+        setCurrentView('soul-king-palace');
       } else if (hash.startsWith('anime/')) {
         setCurrentView(hash.replace('anime/', ''));
       } else {
@@ -49,7 +55,11 @@ export default function App() {
 
   const handleSelectAnime = (slug: string) => {
     setCurrentView(slug);
-    window.location.hash = `/anime/${slug}`;
+    if (slug === 'soul-king-palace' || slug === 'royal-realm') {
+      window.location.hash = '#soul-king-palace';
+    } else {
+      window.location.hash = `/anime/${slug}`;
+    }
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
     window.scrollTo(0, 0);
@@ -88,6 +98,17 @@ export default function App() {
       <ApolloProvider client={apolloClient}>
         <div className="h-screen w-full overflow-hidden bg-zinc-950 font-sans text-zinc-100 selection:bg-purple-500/30 selection:text-purple-200">
           <HuecoMundoRealmPage onBack={handleBackToHome} />
+        </div>
+      </ApolloProvider>
+    );
+  }
+
+  // Direct render for Soul King Palace (Royal Realm)
+  if (currentView === 'soul-king-palace' || currentView === 'royal-realm') {
+    return (
+      <ApolloProvider client={apolloClient}>
+        <div className="min-h-screen bg-black font-sans text-zinc-100 selection:bg-red-600 selection:text-white">
+          <SoulKingRealmPage onBack={handleBackToHome} />
         </div>
       </ApolloProvider>
     );
