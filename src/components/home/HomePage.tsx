@@ -220,9 +220,13 @@ export function HomePage({ onSelectAnime }: HomePageProps) {
           <a href="#" className="font-podium text-2xl sm:text-3xl font-bold tracking-[0.3em] text-white uppercase opacity-90 hover:opacity-100 transition-opacity">
             B L E A C H
           </a>
-          <span className="font-inter text-xs tracking-widest uppercase text-white/50 border border-white/20 px-3 py-1 hidden sm:inline-block">
-            THOUSAND-YEAR BLOOD WAR CODEX
-          </span>
+          <button
+            onClick={() => onSelectAnime('soul-king-palace')}
+            className="font-inter text-xs tracking-widest uppercase text-amber-300/90 hover:text-white border border-amber-500/40 hover:border-amber-400 px-3.5 py-1.5 rounded-lg bg-amber-950/60 hover:bg-amber-900/80 transition-all cursor-pointer hidden sm:inline-flex items-center gap-2 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+          >
+            <Crown className="w-3.5 h-3.5 text-amber-400" />
+            <span>ENTER ROYAL REALM ARCHIVE →</span>
+          </button>
         </div>
 
         <motion.main
@@ -246,11 +250,21 @@ export function HomePage({ onSelectAnime }: HomePageProps) {
             Gotei 13 captain hierarchies, Zanpakutō powers, and <strong className="font-bold text-white">the Thousand-Year Blood War.</strong>
           </p>
 
-          <div className="animate-fade-up-delay-3 mt-8 lg:mt-10 flex items-center gap-3">
-            <Award className="w-8 h-8 text-amber-400/80 shrink-0" />
-            <div className="text-white/60 text-xs tracking-wider uppercase font-inter leading-snug">
-              <div className="text-amber-400 font-bold">Grade 1 Canon</div>
-              <div>Soul Society Archive</div>
+          <div className="animate-fade-up-delay-3 mt-8 lg:mt-10 flex flex-wrap items-center gap-4">
+            <button
+              onClick={() => onSelectAnime('soul-king-palace')}
+              className="inline-flex items-center gap-2.5 text-xs font-podium uppercase tracking-widest text-amber-300 hover:text-white bg-amber-950/90 hover:bg-amber-900 border border-amber-500/60 hover:border-amber-400 px-5 py-3 rounded-xl transition-all shadow-[0_0_25px_rgba(245,158,11,0.35)] hover:shadow-[0_0_35px_rgba(245,158,11,0.6)] cursor-pointer group"
+            >
+              <Crown className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
+              <span>EXPLORE ROYAL REALM (SOUL KING &amp; SQUAD 0) →</span>
+            </button>
+
+            <div className="flex items-center gap-2.5 text-white/60 text-xs tracking-wider uppercase font-inter">
+              <Award className="w-7 h-7 text-amber-400/80 shrink-0" />
+              <div className="leading-tight">
+                <span className="text-amber-400 font-bold block">Grade 1 Canon</span>
+                <span>Royal Realm Archive</span>
+              </div>
             </div>
           </div>
 
