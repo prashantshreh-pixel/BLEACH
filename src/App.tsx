@@ -57,6 +57,10 @@ export default function App() {
     setCurrentView(slug);
     if (slug === 'soul-king-palace' || slug === 'royal-realm') {
       window.location.hash = '#soul-king-palace';
+    } else if (slug === 'hueco-mundo' || slug === 'huecomundo') {
+      window.location.hash = '#hueco-mundo';
+    } else if (slug === 'hell') {
+      window.location.hash = '#hell';
     } else {
       window.location.hash = `/anime/${slug}`;
     }
